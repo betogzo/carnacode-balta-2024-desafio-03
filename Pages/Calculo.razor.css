@@ -1,0 +1,147 @@
+﻿.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    max-width: 40rem;
+    font-family: "Inter", sans-serif;
+}
+
+.container > * {
+    width: 80%;
+}
+
+.container > p, .container > h1 {
+    text-align: center;
+}
+
+.box {
+    background-color: #FFFFFF;
+    border-radius: .5rem;
+    padding: 2rem;
+    margin-top: 2rem;
+    z-index: 1;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.purple-bg {
+    background-color: #2E1462;
+}
+
+.screen-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+}
+
+.subtitle {
+    color: #666666;
+    font-size: 1.6rem;
+}
+
+input {
+    height: 5rem;
+    border-radius: .5rem;
+    background-color: #F6F6F6;
+    border: .2rem solid #E8E8E8;
+    padding-left: 2rem;
+    font-size: 1.6rem;
+    margin-top: 1.2rem;
+}
+
+::deep .input {
+    height: 5rem;
+    border-radius: .5rem;
+    background-color: #F6F6F6;
+    border: .2rem solid #E8E8E8;
+    padding-left: 2rem;
+    font-size: 1.6rem;
+    margin-top: 1.2rem;
+}
+
+::deep input::placeholder {
+    color: #BDBDBD;
+    font-size: 1.6rem;
+}
+
+.primary-button {
+    height: 5rem;
+    background-color: #45FEFE;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #000000;
+    border: none;
+    border-radius: 1.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.secondary-button {
+    height: 5rem;
+    background-color: #FFFFFF;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #000000;
+    border: .2rem solid #45FEFE;
+    border-radius: 1.5rem;
+    cursor: pointer;
+}
+
+.cbox {
+    color: #666666;
+    font-size: 1.4rem;
+    font-weight: 100;
+    display: flex;
+}
+
+input[type="text"], input[type="checkbox"], button {
+    width: calc(100% - 2rem);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    font-size: 1.6rem;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    vertical-align: middle;
+    margin-right: 1rem;
+    align-self: center;
+}
+
+.checkbox-label {
+    display: block;
+}
+
+.br-25rem {
+    border-radius: 2.5rem;
+}
+
+label {
+    font-size: 1.6rem;
+    align-self: center;
+}
+
+::deep input:focus, ::deep input.form-control:focus {
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+@media (min-width:801px) {
+    .container {
+        zoom: 70%;
+    }
+}
+

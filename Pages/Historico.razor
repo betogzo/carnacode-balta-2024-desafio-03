@@ -1,0 +1,75 @@
+﻿@page "/historico"
+@inject LocalStorageService _localStorageService
+@inject TimeService _timeService
+
+<div class="container">
+    <div class="icon">
+        <img style="display: block; margin: auto;" src="./assets/icon-no-bg.png">
+    </div>
+    <h1>Histórico</h1>
+    <input class="br-25rem" @oninput="@SearchInputChanged" type="text" placeholder="Pesquisar...">
+    <ul class="notifications">
+       @if (_results.Any() && String.IsNullOrWhiteSpace(_searchString))
+       {
+           foreach (var result in _results)
+           {
+               <li class="notification">
+                   <div class="icon2"></div>
+                   <article class="content">
+                       <header class="title-time">
+                           <h2 class="title">@result.ImcResultTitle</h2>
+                           <p class="time">@_timeService.GetPassedTime(result.CalculatedAt)</p>
+                       </header>
+                       <p class="info">@result.ImcResultInfo</p>
+                   </article>
+               </li>
+           }
+       }
+        else if (_resultsFiltered.Any() && !String.IsNullOrWhiteSpace(_searchString))
+       {
+            foreach (var result in _resultsFiltered)
+            {
+                <li class="notification">
+                    <div class="icon2"></div>
+                    <article class="content">
+                        <header class="title-time">
+                            <h2 class="title">@result.ImcResultTitle</h2>
+                            <p class="time">@_timeService.GetPassedTime(result.CalculatedAt)</p>
+                        </header>
+                        <p class="info">@result.ImcResultInfo</p>
+                    </article>
+                </li>
+            }
+       }
+        else if (!String.IsNullOrEmpty(_searchString) && !_resultsFiltered.Any())
+        {
+            <span class="no-history-info">Nenhum histórico compatível com a pesquisa foi encontrado.</span>
+        }
+        else
+        {
+            <span class="no-history-info">Nenhum cálculo feito recencemente.</span>
+        }
+    </ul>
+</div>
+
+@code {
+    private List<ImcResult> _results = [];
+    
+    private List<ImcResult> _resultsFiltered = [];
+
+    private string _searchString { get; set; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _results = await _localStorageService.GetAllResultsFromLocalStorage();
+        _results.Reverse();
+    }
+
+    private async Task SearchInputChanged(ChangeEventArgs args)
+    {
+        if (!_results.Any() || args.Value is null) return;
+        _searchString = (string)args.Value;
+        await Task.Delay(500); //just a little mojo since my code is lightning fast :D
+        _resultsFiltered = _results.Where(r => r.ImcResultTitle.ToLower().Contains(_searchString.Trim().ToLower())).ToList();
+    }
+}

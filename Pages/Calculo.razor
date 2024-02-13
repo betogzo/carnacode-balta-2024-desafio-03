@@ -1,0 +1,43 @@
+﻿@page "/calculo"
+@inject CalculadoraImc _calculadoraImc;
+@inject LocalStorageService _localStorageService;
+@inject NavigationManager _navigationManager;
+
+<body>
+    <div class="container">
+        <h1 class="title mt-1">Cálculo de IMC</h1>
+        <EditForm Model="@Model" OnValidSubmit="OnSubmitValidAsync">
+            <DataAnnotationsValidator />
+
+            <div class="mb-3">
+                <InputNumber @bind-Value="Model.Altura" class="form-control input" placeholder="Altura (m)" />
+                <InputNumber @bind-Value="Model.Peso" class="form-control input" placeholder="Peso (kg)" />
+                <InputText @bind-Value="Model.Sexo" class="form-control input" placeholder="Sexo (M ou F)" />
+            </div>
+            <ValidationSummary />
+            <div class="cbox">
+                <input type="checkbox" name="idade" />
+                <label for="idade">Tenho 65 anos ou mais</label>
+            </div>
+            <button style="width: 100%" type="submit" class="primary-button">Calcular meu IMC</button>
+            <a target="blank" href="https://vidasaudavel.einstein.br/calcular-o-seu-imc/">
+                <button type="button" style="width: 100%" class="secondary-button">Entenda o cálculo</button>
+            </a>
+            
+        </EditForm>
+    </div>
+</body>
+
+@code {
+    CalcInput Model = new();
+    ImcResult ImcResult = new();
+
+    protected async Task OnSubmitValidAsync()
+    {
+        var resultado = _calculadoraImc.Calcula(Model.Altura ?? 0f, Model.Peso ?? 0f);
+        ImcResult = _calculadoraImc.GeraResultadoInfo(resultado);
+
+        await _localStorageService.SaveToLocalStorageAsJson(ImcResult);
+        _navigationManager.NavigateTo("historico");
+    }
+}
