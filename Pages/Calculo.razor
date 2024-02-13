@@ -37,7 +37,10 @@
         var resultado = _calculadoraImc.Calcula(Model.Altura ?? 0f, Model.Peso ?? 0f);
         ImcResult = _calculadoraImc.GeraResultadoInfo(resultado);
 
-        await _localStorageService.SaveToLocalStorageAsJson(ImcResult);
-        _navigationManager.NavigateTo("historico");
+        // await _localStorageService.SaveToLocalStorageAsJson(ImcResult);
+        // _navigationManager.NavigateTo("historico");
+        
+        var historicoUrl = _navigationManager.ToAbsoluteUri("/historico").ToString();
+        _navigationManager.NavigateTo(historicoUrl.ToString());
     }
 }
