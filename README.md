@@ -1,5 +1,5 @@
-🔗 [Repositório da parte 1 do desafio](https://github.com/betogzo/carnacode-balta-2024-desafio-03)  
-🔗 [Repositório da parte 2 do desafio](https://github.com/betogzo/carnacode-balta-2024-desafio-03)  
+🔗 [Repositório da parte 1 do desafio](https://github.com/betogzo/carnacode-balta-2024-desafio-01)  
+🔗 [Repositório da parte 2 do desafio](https://github.com/betogzo/carnacode-balta-2024-desafio-02)  
 🔗 [Live demo da aplicação no GitHub Pages](https://betogzo.github.io/carnacode-balta-2024-desafio-03)   
 
 ![banner-carnacode](https://github.com/balta-io/carnacode-balta-2024-desafio-01/assets/965305/b8cc442c-d64f-4dd1-9414-7fc896b47183)
