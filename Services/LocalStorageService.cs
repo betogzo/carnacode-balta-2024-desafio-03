@@ -1,5 +1,5 @@
 ﻿using Blazored.LocalStorage;
-using Imc.Data;
+using Imc.Models;
 using Newtonsoft.Json;
 
 namespace Imc.Services;

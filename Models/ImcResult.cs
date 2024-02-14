@@ -1,4 +1,4 @@
-﻿namespace Imc.Data;
+﻿namespace Imc.Models;
 
 public class ImcResult
 {

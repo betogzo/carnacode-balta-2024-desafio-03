@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Imc.Data;
+namespace Imc.Models;
 
 public class CalcInput
 {
